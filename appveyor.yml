@@ -19,11 +19,14 @@ test_script:
     - npm run test
 
 after_test:
-    - sonar-scanner -Dsonar.login="$SONARCLOUD_AUTH_TOKEN"
+    - sonar-scanner -Dsonar.login="$SONARCLOUD_AUTH_TOKEN" -Dsonar.branch.name="$APPVEYOR_REPO_BRANCH"
     
+deploy_script:
+    - npm run pkg
+
 artifacts:
-    - path: 'build'
-      name: 'src'
+    - path: 'bin'
+      name: 'binaries'
 
     - path: 'test_results/coverage'
       name: 'test coverage'
