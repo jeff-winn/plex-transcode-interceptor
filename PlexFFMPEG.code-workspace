@@ -7,6 +7,7 @@
 	"settings": {
 		"files.exclude": {
 			"build": true,
+			"bin": true,
 			"node_modules": true,
 			"test_results": true,
 			"**/.git": true,
