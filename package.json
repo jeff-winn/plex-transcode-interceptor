@@ -12,7 +12,8 @@
   },
   "pkg": {
     "targets": [
-      "linux-node10"
+      "linux-node12",
+      "win-node12"
     ]
   },
   "repository": {
