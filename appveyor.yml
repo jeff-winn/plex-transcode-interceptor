@@ -1,0 +1,37 @@
+version: 0.0.0-ci-{build}
+image: Ubuntu
+        
+environment:
+    NODEJS_VERSION: 12.16.3
+    SONARCLOUD_AUTH_TOKEN:
+        secure: WSZCNtuf3h9M4BxNiFQ7SQPwGkg3+LqSMZRyfYruiicYvc1BzYaN90n8pNEsPAKs
+    
+stack: node $NODEJS_VERSION
+
+install:
+    - npm install
+    - npm install -g sonarqube-scanner
+    
+build_script:
+    - npm run build-prod
+
+test_script:
+    - npm run test
+
+after_test:
+    - sonar-scanner -Dsonar.login="$SONARCLOUD_AUTH_TOKEN" -Dsonar.branch.name="$APPVEYOR_REPO_BRANCH"
+    
+artifacts:
+    - path: 'build'
+      name: 'src'
+
+    - path: 'test_results/coverage'
+      name: 'test coverage'
+
+    - path: 'test_results/jest-junit.xml'
+      name: 'test results'
+
+on_success:
+    - ps: |
+        $wc = New-Object 'System.Net.WebClient'
+        $wc.UploadFile("https://ci.appveyor.com/api/testresults/junit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path ./test_results/jest-junit.xml))
