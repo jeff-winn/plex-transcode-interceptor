@@ -19,7 +19,7 @@ test_script:
     - npm run test
 
 after_test:
-    - sonar-scanner -Dsonar.login="$SONARCLOUD_AUTH_TOKEN" -Dsonar.branch.name="$APPVEYOR_REPO_BRANCH"
+    - sonar-scanner -Dsonar.login="$SONARCLOUD_AUTH_TOKEN"
     
 artifacts:
     - path: 'build'
