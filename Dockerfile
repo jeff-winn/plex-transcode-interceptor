@@ -1,7 +1,7 @@
 FROM plexinc/pms-docker
 
 WORKDIR /usr/lib/plexffmpeg
-COPY bin/ /
+COPY bin/ .
 
 RUN \
 # Replace the transcoder
