@@ -1,4 +1,4 @@
-FROM plexinc/pms-docker
+FROM plexinc/pms-docker:latest
 
 WORKDIR /usr/lib/plexffmpeg
 COPY bin/ .
