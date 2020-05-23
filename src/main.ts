@@ -1,5 +1,7 @@
-function main(): void {
-    console.log("Started!");
+ function main(): void {
+     while (true) {
+         console.log('Running');
+     }
 }
 
 main();
