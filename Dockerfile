@@ -16,4 +16,4 @@ RUN npm run pkg
 
 RUN \
 # Replace the transcoder
-    cp -f ./Plex\ Transcoder-linux /usr/lib/plexmediaserver/Plex\ Transcoder
+    cp -f ./bin/Plex\ Transcoder-linux /usr/lib/plexmediaserver/Plex\ Transcoder
