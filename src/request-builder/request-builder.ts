@@ -1,7 +1,7 @@
 import { Request } from 'node-fetch';
 
 export class RequestBuilder {
-    constructor(private environment: NodeJS.ProcessEnv) {        
+    constructor(private process: NodeJS.Process) {
     }
 
     public build(): Request {
@@ -10,18 +10,18 @@ export class RequestBuilder {
         let request: Request = new Request(url, {
             method: 'post',
             headers: {
-                'Content-Type': 'application/octet-stream'
-            }
+                'Content-Type': 'application/json',
+                'Accept': 'application/octet-stream',
+            },
+            body: JSON.stringify(process.argv)
         });
         
         return request;
     }
 
     private getUrl(): string {
-        if (this.environment.TRANSCODER_URL != undefined) {
-            let result: string = this.environment.TRANSCODER_URL;
-            console.log(result);
-
+        if (this.process.env.TRANSCODER_URL != undefined) {
+            let result: string = this.process.env.TRANSCODER_URL;
             return result;
         }
         
