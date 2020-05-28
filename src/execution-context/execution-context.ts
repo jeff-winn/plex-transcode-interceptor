@@ -1,4 +1,4 @@
-import { Config, ConfigImpl } from "./config";
+import { Config, ConfigImpl } from "../config/config";
 
 /** Describes the application execution context. */
 export interface ExecutionContext { 

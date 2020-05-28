@@ -1,6 +1,6 @@
 import fetch, { Request, Response } from 'node-fetch';
 import { RequestBuilder, RequestBuilderImpl } from './request-builder/request-builder';
-import { ExecutionContext } from './execution-context';
+import { ExecutionContext } from './execution-context/execution-context';
 
 /** Provides the program logic for the application. */
 export class Program {   

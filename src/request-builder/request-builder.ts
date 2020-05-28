@@ -1,5 +1,5 @@
 import { Request } from 'node-fetch';
-import { ExecutionContext } from '../execution-context';
+import { ExecutionContext } from '../execution-context/execution-context';
 
 /** Describes a builder used to create a transcode request. */
 export interface RequestBuilder {

@@ -1,5 +1,5 @@
 import { Program } from './program';
-import { ExecutionContext, ExecutionContextImpl } from './execution-context';
+import { ExecutionContext, ExecutionContextImpl } from './execution-context/execution-context';
 
 async function main(): Promise<void> {
     try {
