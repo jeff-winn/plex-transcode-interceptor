@@ -4,7 +4,7 @@ import { ExecutionContext } from './execution-context';
 
 /** Provides the program logic for the application. */
 export class Program {   
-    constructor(private context: ExecutionContext) {
+    constructor(private executionContext: ExecutionContext) {
     }
 
     /** Runs the application. */
@@ -17,13 +17,12 @@ export class Program {
             throw 'EHTTPSTATUS [' + response.status + ']: ' + response.statusText;
         }
 
-        response.body.pipe(this.context.getOutputStream());
+        response.body.pipe(this.executionContext.getOutputStream());
     }
 
     protected createRequestBuilder(): RequestBuilder {
         return new RequestBuilderImpl(
-            this.context.getConfig(), 
-            this.context.getArgs());
+            this.executionContext);
     }
 
     protected async getResponse(request: Request): Promise<Response> {

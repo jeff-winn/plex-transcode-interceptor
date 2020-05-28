@@ -1,5 +1,5 @@
 import { Request } from 'node-fetch';
-import { Config } from '../config';
+import { ExecutionContext } from '../execution-context';
 
 /** Describes a builder used to create a transcode request. */
 export interface RequestBuilder {
@@ -8,7 +8,7 @@ export interface RequestBuilder {
 };
 
 export class RequestBuilderImpl implements RequestBuilder {
-    constructor(private config: Config, private args: string[]) {
+    constructor(private executionContext: ExecutionContext) {
     }
 
     public build(): Request {
@@ -20,14 +20,14 @@ export class RequestBuilderImpl implements RequestBuilder {
                 'Content-Type': 'application/json',
                 'Accept': 'application/octet-stream',
             },
-            body: JSON.stringify(this.args)
+            body: JSON.stringify(this.executionContext.getArgs())
         });
         
         return request;
     }
 
     private getUrl(): string {
-        let url = this.config.getTranscoderUrl();
+        let url = this.executionContext.getConfig().getTranscoderUrl();
         if (url != undefined) {
             return url;
         }
