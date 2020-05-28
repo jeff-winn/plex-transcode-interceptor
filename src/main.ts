@@ -3,9 +3,9 @@ import { ExecutionContext, ExecutionContextImpl } from './execution-context';
 
 async function main(): Promise<void> {
     try {
-        let context = createExecutionContext();
+        let context: ExecutionContext = createExecutionContext();
 
-        let program = new Program(context);            
+        let program: Program = new Program(context);            
         await program.run();
     }
     catch (error) {

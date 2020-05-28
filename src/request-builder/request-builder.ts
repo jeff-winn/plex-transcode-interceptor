@@ -1,7 +1,9 @@
 import { Request } from 'node-fetch';
 import { Config } from '../config';
 
+/** Describes a builder used to create a transcode request. */
 export interface RequestBuilder {
+    /** Builds the request. */
     build(): Request;
 };
 

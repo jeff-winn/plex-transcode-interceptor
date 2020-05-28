@@ -1,4 +1,6 @@
+/** Describes the application configuration settings. */
 export interface Config { 
+    /** Gets the transcoder url. */
     getTranscoderUrl(): string | undefined;
 };
 
