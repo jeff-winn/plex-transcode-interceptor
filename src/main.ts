@@ -1,17 +1,23 @@
-import fetch from 'node-fetch';
-import { RequestBuilder } from './request-builder/request-builder';
+import { Program } from './program';
+import { ExecutionContext, ExecutionContextImpl } from './execution-context';
 
 async function main(): Promise<void> {
     try {
-        let builder: RequestBuilder = new RequestBuilder(process);
-        let request = builder.build();
+        let context = createExecutionContext();
 
-        let response = await fetch(request);
-        response.body.pipe(process.stdout);
+        let program = new Program(context);            
+        await program.run();
     }
     catch (error) {
         console.log(error);
     }
+}
+
+function createExecutionContext(): ExecutionContext {
+    return new ExecutionContextImpl(
+        process.stdout,
+        process.env,
+        process.argv);
 }
 
 main();

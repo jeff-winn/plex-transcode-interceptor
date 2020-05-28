@@ -1,7 +1,12 @@
 import { Request } from 'node-fetch';
+import { Config } from '../config';
 
-export class RequestBuilder {
-    constructor(private process: NodeJS.Process) {
+export interface RequestBuilder {
+    build(): Request;
+};
+
+export class RequestBuilderImpl implements RequestBuilder {
+    constructor(private config: Config, private args: string[]) {
     }
 
     public build(): Request {
@@ -13,16 +18,16 @@ export class RequestBuilder {
                 'Content-Type': 'application/json',
                 'Accept': 'application/octet-stream',
             },
-            body: JSON.stringify(process.argv)
+            body: JSON.stringify(this.args)
         });
         
         return request;
     }
 
     private getUrl(): string {
-        if (this.process.env.TRANSCODER_URL != undefined) {
-            let result: string = this.process.env.TRANSCODER_URL;
-            return result;
+        let url = this.config.getTranscoderUrl();
+        if (url != undefined) {
+            return url;
         }
         
         throw 'The TRANSCODER_URL environment variable must be configured.';
