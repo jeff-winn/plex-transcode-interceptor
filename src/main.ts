@@ -17,7 +17,7 @@ function createExecutionContext(): ExecutionContext {
     return new ExecutionContextImpl(
         process.stdout,
         process.env,
-        process.argv);
+        process.argv.slice(2));
 }
 
 main();
