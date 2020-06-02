@@ -14,10 +14,6 @@ export class RequestBuilderImpl implements RequestBuilder {
     public build(): Request {
         let url = this.getUrl();
 
-        let payload = {
-            args: JSON.stringify(this.executionContext.getArgs()),
-        };
-
         let request: Request = new Request(url, {
             method: 'post',
             headers: {
