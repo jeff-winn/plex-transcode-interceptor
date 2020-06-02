@@ -9,7 +9,7 @@ async function main(): Promise<void> {
         await program.run();
     }
     catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
