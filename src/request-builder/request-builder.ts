@@ -17,13 +17,19 @@ export class RequestBuilderImpl implements RequestBuilder {
         let request: Request = new Request(url, {
             method: 'post',
             headers: {
-                'Content-Type': 'text/plain',
+                'Content-Type': 'application/json',
                 'Accept': 'text/plain',
             },
-            body: 'hello world!'
+            body: JSON.stringify({ 
+                cmdLineArgs: this.getCmdLineArgs()
+            })
         });
         
         return request;
+    }
+
+    private getCmdLineArgs(): string[] {
+        return this.executionContext.getArgs();
     }
 
     private getUrl(): string {
