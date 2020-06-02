@@ -17,8 +17,8 @@ export class RequestBuilderImpl implements RequestBuilder {
         let request: Request = new Request(url, {
             method: 'post',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/octet-stream',
+                'Content-Type': 'text/plain',
+                'Accept': 'text/plain',
             },
             body: 'hello world!'
         });
