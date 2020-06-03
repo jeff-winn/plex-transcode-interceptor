@@ -1,5 +1,6 @@
 import { Request } from 'node-fetch';
 import { ExecutionContext } from '../execution-context/execution-context';
+import { SessionIdParser } from './session-id-parser';
 
 /** Describes a builder used to create a transcode request. */
 export interface RequestBuilder {
@@ -8,7 +9,7 @@ export interface RequestBuilder {
 };
 
 export class RequestBuilderImpl implements RequestBuilder {
-    constructor(private executionContext: ExecutionContext) {
+    constructor(private executionContext: ExecutionContext, private parser: SessionIdParser) {
     }
 
     public build(): Request {
@@ -18,6 +19,7 @@ export class RequestBuilderImpl implements RequestBuilder {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
+                'X-Plex-Session-ID': this.getSessionId(),
                 'Accept': 'text/plain',
             },
             body: JSON.stringify({ 
@@ -26,6 +28,15 @@ export class RequestBuilderImpl implements RequestBuilder {
         });
         
         return request;
+    }
+
+    private getSessionId(): string {
+        let sessionId = this.parser.parse(this.executionContext);
+        if (sessionId === undefined) {
+            return '';
+        }
+
+        return sessionId;
     }
 
     private getCmdLineArgs(): string[] {
