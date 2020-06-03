@@ -13,7 +13,8 @@
             "console": "internalConsole",
             "outputCapture": "std",
             "args": [
-                "test"
+                "test",
+                "http://127.0.0.1:32400/video/:/transcode/session/0xgfo30uie4ss9sce4j9vcex/a81b1328-2a56-4929-8fd6-8972c88fde9c/progress"
             ]
         }
     ]

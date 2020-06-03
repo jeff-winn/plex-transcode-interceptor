@@ -1,6 +1,7 @@
 import fetch, { Request, Response } from 'node-fetch';
 import { RequestBuilder, RequestBuilderImpl } from './request-builder/request-builder';
 import { ExecutionContext } from './execution-context/execution-context';
+import { SessionIdParserImpl } from './request-builder/session-id-parser';
 
 /** Provides the program logic for the application. */
 export class Program {   
@@ -22,7 +23,8 @@ export class Program {
 
     protected createRequestBuilder(): RequestBuilder {
         return new RequestBuilderImpl(
-            this.executionContext);
+            this.executionContext,
+            new SessionIdParserImpl());
     }
 
     protected async getResponse(request: Request): Promise<Response> {
