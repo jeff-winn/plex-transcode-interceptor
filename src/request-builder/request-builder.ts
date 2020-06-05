@@ -14,12 +14,14 @@ export class RequestBuilderImpl implements RequestBuilder {
 
     public build(): Request {
         let url = this.getUrl();
-
+        let idParts = this.getSessionIdParts();
+        
         let request: Request = new Request(url, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Plex-Session-ID': this.getSessionId(),
+                'X-Plex-Session-ID': idParts[0],
+                'X-Request-ID': idParts[1],
                 'Accept': 'text/plain',
             },
             body: JSON.stringify({ 
@@ -30,13 +32,13 @@ export class RequestBuilderImpl implements RequestBuilder {
         return request;
     }
 
-    private getSessionId(): string {
+    private getSessionIdParts(): string[] {
         let sessionId = this.parser.parse(this.executionContext);
         if (sessionId === undefined) {
-            return '';
+            throw 'The Plex session id could not be determined';
         }
 
-        return sessionId;
+        return sessionId.split('/', 2);
     }
 
     private getCmdLineArgs(): string[] {
