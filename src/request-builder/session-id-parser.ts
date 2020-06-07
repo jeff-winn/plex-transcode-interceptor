@@ -6,7 +6,7 @@ export interface SessionIdParser {
 };
 
 export class SessionIdParserImpl implements SessionIdParser {
-    private regex: RegExp = /^http\:\/\/127.0.0.1:32400\/video\/:\/transcode\/session\/(.*)\/progress$/;
+    private regex: RegExp = /http\:\/\/127.0.0.1:32400\/video\/:\/transcode\/session\/(.*)\/progress$/;
 
     public parse(executionContext: ExecutionContext): string | undefined {
         let sessions = executionContext.getArgs().filter(e => (this.regex.test(e))).map(e => {
