@@ -20,7 +20,7 @@ export class RequestBuilderImpl implements RequestBuilder {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Plex-Session-ID': idParts[0],
+                'X-Plex-Client-Identifier': idParts[0],
                 'X-Request-ID': idParts[1],
                 'Accept': 'text/plain',
             },
