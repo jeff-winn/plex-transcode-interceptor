@@ -9,6 +9,6 @@ export class ConfigImpl implements Config {
     }
 
     public getTranscoderUrl(): string | undefined {
-        return this.environment.TRANSCODER_URL || "http://localhost:34800/api/transcode";
+        return this.environment.TRANSCODER_URL || undefined;
     }
 }
