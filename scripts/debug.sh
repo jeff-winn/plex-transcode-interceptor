@@ -1,3 +1,3 @@
 #!/bin/sh
 echo "$@"
-node /usr/src/plextranscodeinterceptor/build/main.js "$@"
+node --inspect-brk=0.0.0.0:9229 /usr/src/plextranscodeinterceptor/build/main.js "$@"
