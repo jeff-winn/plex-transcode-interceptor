@@ -2,7 +2,7 @@ version: "3.7"
 services:
   plex:
     container_name: plexdev
-    image: jeffwinn/plex-transcode-interceptor:debug
+    image: jeffwinn/plex-transcode-interceptor:latest
     restart: unless-stopped
     
     ports:
@@ -15,14 +15,12 @@ services:
       - "32414:32414/udp"
       - "32469:32469/tcp"
       - "8324:8324/tcp"
-      - "9229:9229/tcp" # Node debugger
 
     environment:
       - PUID=1000
       - PGID=1000
       - TZ="America/Detroit
       - PLEX_CLAIM=${PLEX_CLAIM}
-      - TRANSCODER_URL=http://host.docker.internal:34800/api/transcode
 
     volumes:
       - ${USERPROFILE}/.plex/config:/config
