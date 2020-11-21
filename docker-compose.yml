@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  plex:
+    container_name: plex
+    image: plex-transcode-interceptor:latest
+    restart: unless-stopped
+    
+    ports:
+      - "32400:32400/tcp"
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="America/Detroit
+      - PLEX_CLAIM=${PLEX_CLAIM}
+      - TRANSCODER_URL=${TRANSCODER_URL}
+
+    volumes:
+      - ${USERPROFILE}/.plex/config:/config
+      - ${USERPROFILE}/.plex/transcode:/transcode
+      - ${USERPROFILE}/videos:/data/movies

@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeff-winn/PlexFFMPEG.git"
+    "url": "git+https://github.com/jeff-winn/PlexTranscodeInterceptor.git"
   },
   "author": "Jeff Winn",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jeff-winn/PlexFFMPEG/issues"
+    "url": "https://github.com/jeff-winn/PlexTranscodeInterceptor/issues"
   },
-  "homepage": "https://github.com/jeff-winn/PlexFFMPEG#readme",
+  "homepage": "https://github.com/jeff-winn/PlexTranscodeInterceptor#readme",
   "dependencies": {
     "@types/node": "^14.0.5",
     "@types/node-fetch": "^2.5.7",

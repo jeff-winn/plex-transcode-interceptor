@@ -1,0 +1,5 @@
+
+services:
+  plex:
+    ports:    
+      - "9229:9229/tcp" # Node debugger
