@@ -2,11 +2,11 @@
 	"version": "2.0.0",
 	"tasks": [
         {
-			"label": "docker-build: debug",
+			"label": "docker-build",
 			"type": "docker-build",
 			"dockerBuild": {
 				"tag": "plex-transcode-interceptor:latest",
-				"dockerfile": "${workspaceFolder}/Dockerfile.debug",
+				"dockerfile": "${workspaceFolder}/Dockerfile",
 			},
             "platform": "node",
             "group": {
