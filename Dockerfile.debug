@@ -1,5 +1,8 @@
 FROM plexinc/pms-docker:latest
 
+EXPOSE 9229
+ENV TRANSCODER_URL http://host.docker.internal:34800/api/transcode
+
 RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get install nodejs -y
@@ -9,11 +12,11 @@ WORKDIR /usr/src/plex-transcode-interceptor
 COPY package*.json ./
 COPY tsconfig*.json ./
 COPY ./src src
+COPY ./scripts scripts
 
 RUN npm install
-RUN npm run build-prod
-RUN npm run pkg
+RUN npm run build
 
 RUN \
 # Replace the transcoder
-    cp -f ./bin/Plex\ Transcoder-linux /usr/lib/plexmediaserver/Plex\ Transcoder
+    cp -f -p ./scripts/debug.sh /usr/lib/plexmediaserver/Plex\ Transcoder
