@@ -1,7 +1,6 @@
 FROM plexinc/pms-docker:latest
 
 EXPOSE 9229
-ENV TRANSCODER_URL http://host.docker.internal:34800/api/transcode
 
 RUN apt-get install curl -y
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -

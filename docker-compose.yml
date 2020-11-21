@@ -13,6 +13,7 @@ services:
       - PGID=1000
       - TZ="America/Detroit
       - PLEX_CLAIM=${PLEX_CLAIM}
+      - TRANSCODER_URL=${TRANSCODER_URL}
 
     volumes:
       - ${USERPROFILE}/.plex/config:/config
